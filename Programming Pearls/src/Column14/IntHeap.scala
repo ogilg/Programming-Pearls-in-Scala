@@ -10,6 +10,8 @@ class IntHeap(MaxSize:Int) extends Heap[Int] {
   
   // adjust for first element wasted
   def size = size_ - 1
+
+  def getSize = size_ -1
   
   var size_ = 1
   
@@ -34,7 +36,10 @@ class IntHeap(MaxSize:Int) extends Heap[Int] {
   def deleteFromHeap(pos:Int) : Unit  = {
     heap(pos) = heap(size_ - 1)
     size_ -= 1
-    siftDown(pos)
+    if (heap(pos) > parent(pos))
+      siftUp(pos)
+    else
+      siftDown(pos)
   }
   
   
